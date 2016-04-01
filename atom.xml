@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Minenet&#39;s Blog</title>
+  <subtitle>Record study and growth bit by bit !</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://minenet.github.io/"/>
+  <updated>2016-03-30T16:11:34.546Z</updated>
+  <id>https://minenet.github.io/</id>
+  
+  <author>
+    <name>Minenet</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>four</title>
+    <link href="https://minenet.github.io/2016/03/31/four.html"/>
+    <id>https://minenet.github.io/2016/03/31/four.html</id>
+    <published>2016-03-30T16:11:34.000Z</published>
+    <updated>2016-03-30T16:11:34.546Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>three</title>
+    <link href="https://minenet.github.io/2016/03/30/three.html"/>
+    <id>https://minenet.github.io/2016/03/30/three.html</id>
+    <published>2016-03-30T15:38:23.000Z</published>
+    <updated>2016-03-30T15:38:23.164Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>one</title>
+    <link href="https://minenet.github.io/2016/03/30/one.html"/>
+    <id>https://minenet.github.io/2016/03/30/one.html</id>
+    <published>2016-03-30T15:36:51.000Z</published>
+    <updated>2016-03-30T15:39:35.821Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;dd&quot;&gt;&lt;a href=&quot;#dd&quot; class=&quot;headerlink&quot; title=&quot;dd&quot;&gt;&lt;/a&gt;dd&lt;/h1&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;dd&quot;&gt;&lt;a href=&quot;#dd&quot; class=&quot;headerlink&quot; title=&quot;dd&quot;&gt;&lt;/a&gt;dd&lt;/h1&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>test two</title>
+    <link href="https://minenet.github.io/2016/03/30/test-two.html"/>
+    <id>https://minenet.github.io/2016/03/30/test-two.html</id>
+    <published>2016-03-30T08:05:21.000Z</published>
+    <updated>2016-03-30T09:14:23.199Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="a" scheme="https://minenet.github.io/categories/a/"/>
+    
+      <category term="b" scheme="https://minenet.github.io/categories/a/b/"/>
+    
+    
+      <category term="1" scheme="https://minenet.github.io/tags/1/"/>
+    
+      <category term="2" scheme="https://minenet.github.io/tags/2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://minenet.github.io/2016/03/30/test.html"/>
+    <id>https://minenet.github.io/2016/03/30/test.html</id>
+    <published>2016-03-30T08:00:20.000Z</published>
+    <updated>2016-03-30T14:01:57.151Z</updated>
+    
+    <content type="html">&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dekfkeknek&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;efrkglrgkr&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dekfkeknek&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;efrkglrgkr&lt;/span&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>哈哈</title>
+    <link href="https://minenet.github.io/2016/03/30/my-new-post.html"/>
+    <id>https://minenet.github.io/2016/03/30/my-new-post.html</id>
+    <published>2016-03-30T06:55:50.000Z</published>
+    <updated>2016-03-30T07:45:04.666Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://minenet.github.io/2016/03/29/hello-world.html"/>
+    <id>https://minenet.github.io/2016/03/29/hello-world.html</id>
+    <published>2016-03-29T14:28:35.728Z</published>
+    <updated>2016-03-29T14:28:35.728Z</updated>
+    
+    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
