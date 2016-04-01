@@ -75,6 +75,8 @@
 <div class="archive-title" >
 <h2 class="category-icon">分类</h2>
 
+<a data-src="/categories/a/" href="#a" title="a">a<sup>1</sup></a>
+
 </div>
 <div id="main" class="archive-part">
 <div class="all-list-box"></div>
@@ -152,6 +154,7 @@ $(document).ready(function(){
   c.click(function(){
     a.addClass('fadeOut').css('display', 'none');
     o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
     m.addClass('moveMain');
   });
   o.click(function(){

@@ -75,7 +75,7 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/03/29/hello-world.html" title="Hello World" itemprop="url">
+    <a href="/2016/03/29/hello-world/" title="Hello World" itemprop="url">
   
     <h1 itemprop="name">Hello World</h1>
     
@@ -101,8 +101,34 @@
 <aside class="clearfix">
 
   
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/a/" title="a">a<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
 
   
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/1/" title="1">1<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/2/" title="2">2<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
 
   
 
@@ -221,6 +247,7 @@ $(document).ready(function(){
   c.click(function(){
     a.addClass('fadeOut').css('display', 'none');
     o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
     m.addClass('moveMain');
   });
   o.click(function(){
