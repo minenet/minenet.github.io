@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://minenet.github.io/"/>
-  <updated>2016-03-30T16:11:34.546Z</updated>
+  <updated>2016-04-01T06:05:05.920Z</updated>
   <id>https://minenet.github.io/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>henn</title>
+    <link href="https://minenet.github.io/2016/04/02/henn.html"/>
+    <id>https://minenet.github.io/2016/04/02/henn.html</id>
+    <published>2016-04-02T04:15:33.000Z</published>
+    <updated>2016-04-01T06:05:05.920Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;hfhrughrggkgjkgrgrgrgfffjhgkgkgksds&quot;&gt;&lt;a href=&quot;#hfhrughrggkgjkgrgrgrgfffjhgkgkgksds&quot; class=&quot;headerlink&quot; title=&quot;hfhrughrggkgjkgrgrgrgfffjhgkgkgksds&quot;&gt;&lt;/a&gt;hfhrughrggkgjkgrgrgrgfffjhgkgkgksds&lt;/h1&gt;&lt;p&gt;frhrghrkgkdnkfn&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;hfhrughrggkgjkgrgrgrgfffjhgkgkgksds&quot;&gt;&lt;a href=&quot;#hfhrughrggkgjkgrgrgrgfffjhgkgkgksds&quot; class=&quot;headerlink&quot; title=&quot;hfhrughrggkgjkgrgrgrgf
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>heufhuf</title>
+    <link href="https://minenet.github.io/2016/04/01/heufhuf.html"/>
+    <id>https://minenet.github.io/2016/04/01/heufhuf.html</id>
+    <published>2016-04-01T05:50:21.000Z</published>
+    <updated>2016-04-01T05:55:05.650Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hi</title>
+    <link href="https://minenet.github.io/2016/04/01/hi.html"/>
+    <id>https://minenet.github.io/2016/04/01/hi.html</id>
+    <published>2016-04-01T03:31:46.000Z</published>
+    <updated>2016-04-01T03:31:46.690Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>four</title>
@@ -128,10 +179,10 @@
     <link href="https://minenet.github.io/2016/03/29/hello-world.html"/>
     <id>https://minenet.github.io/2016/03/29/hello-world.html</id>
     <published>2016-03-29T14:28:35.728Z</published>
-    <updated>2016-03-29T14:28:35.728Z</updated>
+    <updated>2016-04-01T03:30:44.881Z</updated>
     
     <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;Quick-Start-vbntwjtwj&quot;&gt;&lt;a href=&quot;#Quick-Start-vbntwjtwj&quot; class=&quot;headerlink&quot; title=&quot;Quick Start vbntwjtwj&quot;&gt;&lt;/a&gt;Quick Start vbntwjtwj&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
