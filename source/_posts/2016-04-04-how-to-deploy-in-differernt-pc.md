@@ -1,8 +1,8 @@
 ---
 title: hexo中如何在多台PC中部署
 date: 2016-04-04 14:38:40
-tags: blog
-categories: hexo
+categories: blog
+tags: hexo
 ---
 最近几天把博客进行了重构，之前在阿里云部署的thinkjs+easyou博客很不友好，各种`bug`，尤其是对代码支持和blog文章的格式。Bolg选择了流行的hexo+jacman，并最后优雅的使用了Markdown，真是爽极了。
 # 如何安装使用hexo+jacman #
@@ -67,6 +67,6 @@ git commit -am "update blog source"
 git push origin source
 ```     
 每次编辑之前，先运行fetch.sh,执行代码`./fetch.sh`,编辑完结束，然后就运行`./submit.sh`,一切okay。中间如果出现有需要输入密码的情况，那是因为你在添加ssh key时设置了秘钥，其实无秘钥部署更nice，设置密码时直接回车两次就默认密码为空了，方便不少。  
-如有问题G0oogle和issue。
+如有问题Google和issue。
 
 
