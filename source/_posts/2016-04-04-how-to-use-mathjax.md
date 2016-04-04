@@ -1,6 +1,6 @@
 ---
 title: 如何优雅的写数学公式（MathJax）
-date: 2016-04-04 21:25:08
+date: 2016-04-05 00:02:08
 categories: Math
 tags: mathjs
 mathjax: true
