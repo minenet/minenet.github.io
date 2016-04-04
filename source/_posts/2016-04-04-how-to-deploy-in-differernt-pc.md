@@ -1,7 +1,7 @@
 ---
 title: hexo中如何在多台PC中部署
 date: 2016-04-04 14:38:40
-categories: blog
+categories: Blog
 tags: hexo
 ---
 最近几天把博客进行了重构，之前在阿里云部署的thinkjs+easyou博客很不友好，各种`bug`，尤其是对代码支持和blog文章的格式。Bolg选择了流行的hexo+jacman，并最后优雅的使用了Markdown，真是爽极了。
