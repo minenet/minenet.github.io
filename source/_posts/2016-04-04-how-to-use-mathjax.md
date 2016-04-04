@@ -32,4 +32,6 @@ MathJax.Hub.Config({
 
 # 参考学习
 [MathJax使用LaTeX语法编写数学公式教程](http://iori.sinaapp.com/17.html/comment-page-1?replytocom=2)  
-有时间一定好好翻译一下[MathJaxDocumentation](http://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm)
+有时间一定好好翻译一下[MathJaxDocumentation](http://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm)  
+other: 一款强大的编辑器，不仅涉及数学而且还支持物理化学。[JMEditor](http://www.jmeditor.com/jme/intr.html)：
+> JMEditor（JavaScript Math Editor）是基于CKEditor、jQuery、MathQuill等组件开发的，轻量级、开放源代码、所见即所得、无任何插件的在线公式编辑器。CKEditor与jQuery应用的十分广泛，不再过多介绍。需要指出的是MathQuill，使用HTML+CSS+JS实现公式编辑的效果，他把DOM的力量发挥到了极致。
