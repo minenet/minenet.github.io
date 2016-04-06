@@ -31,19 +31,17 @@ $line-numbers
     font-family font-mono
     @extend $code-block
     overflow auto
-    @media phone
-      overflow auto
   .highlight
     @extend $code-block
     font-size 0.4em 
     @media phone
       font-size highlight-font-size
+      overflow auto
     pre
       @extend $code-block
       border none
       margin 0
       padding 0
-      overflow auto
     table
       margin 0
       width auto
