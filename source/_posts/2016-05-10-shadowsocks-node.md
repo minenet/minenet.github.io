@@ -14,7 +14,7 @@ Shadowsocks一款代理开源的软件，速度快，多平台使用，灵活代
  
 注册账号就不说了，网上搜搜。购买直接进入Control Panel。
 <img src = "http://minenet.me/image/banwagong1.png" class = "img-center">
-一般个人用的话500G够用，网上很多比较便宜的100G都out of stock了。最便宜的是$2.99/month,年付更划算，$19.99/annual 可以跟换数据中心。选洛杉矶数据中心的比较好，延时少，速度快。新出来的费利蒙不知道怎样，尽管都在米国西海岸，而且便宜流量多，不可以更换数据中心（坑）。
+一般个人用的话500G够用，网上很多比较便宜的100G都out of stock了。最便宜的是2.99刀/month,年付更划算，19.99刀/annual 可以跟换数据中心。选洛杉矶数据中心的比较好，延时少，速度快。新出来的费利蒙不知道怎样，尽管都在米国西海岸，而且便宜流量多，不可以更换数据中心（坑）。
 <img src = "http://minenet.me/image/banwagong2.png" calss = "img-center">
 # alpharacks
 [alpharacks](https://www.alpharacks.com)也是美国一家VPS供应商，数据中心全部在洛杉矶，听说速度还可以，而且比较便宜，唯独不好的是，不像搬瓦工那么土豪使用SSD，选择了使用了HHD，不过好歹自己配置的，实用。整个购买过程也是蛋疼，不支持Alipay，需要使用信用卡或使用PayPal，鄙人逼格很low，信用卡一张都没有，学生党穷鬼。发现强大的Paypal支持国内的借记卡了，有幸试了把，估计也没钱海淘。[Paypal](https://www.paypal.com)  
