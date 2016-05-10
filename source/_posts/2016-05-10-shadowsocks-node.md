@@ -86,9 +86,10 @@ vi /etc/shadowsocks.json
 ./shadowsocks.sh uninstall #卸载
 pip install -U shadowsocks #升级
 ```
-珍爱生命！远离百度！科学上网！    
+珍爱生命！远离百度！科学上网！  
 <img src = "http://minenet.me/image/alpharacks.png" class = "img-center">
-  ----------
+
+----------
 [CentOS下shadowsocks-libev一键安装脚本](https://teddysun.com/357.html)  
 
 
