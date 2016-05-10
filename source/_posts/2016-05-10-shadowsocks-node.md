@@ -19,7 +19,7 @@ Shadowsocks一款代理开源的软件，速度快，多平台使用，灵活代
 # alpharacks
 [alpharacks](https://www.alpharacks.com)也是美国一家VPS供应商，数据中心全部在洛杉矶，听说速度还可以，而且比较便宜，唯独不好的是，不像搬瓦工那么土豪使用SSD，选择了使用了HHD，不过好歹自己配置的，实用。整个购买过程也是蛋疼，不支持Alipay，需要使用信用卡或使用PayPal，鄙人逼格很low，信用卡一张都没有，学生党穷鬼。发现强大的Paypal支持国内的借记卡了，有幸试了把，估计也没钱海淘。[Paypal](https://www.paypal.com)  
 
-注册alpharacks也是坑爹，必须填好国家，而且购买时，必须IP与你注册时国家一致，这个验证真是磨人。其实这个站点没有被墙，不走代理直接访问就好，不然就是Fraud了，无论你怎样购买，无法提交订单。鄙人选择了10美刀一年的，其实有个12美刀的好像更好，流量翻了4倍，内存三倍，反正自己去折腾吧。（鄙人也开始用，不是做广告推销，有好的便宜的节点，请留言分享啦。谢谢！）
+注册alpharacks也是坑爹，必须填好国家，而且购买时，必须IP与你注册时国家一致，这个验证真是磨人。其实这个站点没有被墙，不走代理直接访问就好，不然就是Fraud了，无论你怎样购买，无法提交订单。鄙人选择了10美刀一年的，其实有个12美刀的好像更好，流量翻了4倍，内存三倍，反正自己去折腾吧。（鄙人也才开始用，不是做广告推销，有好的便宜的节点，请留言分享啦。谢谢！）
 # 如何配置
 鄙人选择了centos-6-64bit 系统作为测试配置，SS主要有Python、Go、nodejs、libev等版本，我选择了Python。 
 远程使用xshell登录后。
@@ -29,8 +29,8 @@ wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsoc
 chmod +x shadowsocks.sh
 ./shadowsocks.sh 2>&1 | tee shadowsocks.log
 ```
-
-中间依次要你输入SS密码，和端口，不输入就是默认。自动安装依赖。  
+中间依次要你输入SS密码，和端口，不输入就是默认。自动安装依赖。
+  
 ```bash
 Congratulations, shadowsocks install completed!
 Your Server IP:your_server_ip
@@ -42,14 +42,11 @@ Your Encryption Method:aes-256-cfb
 
 Welcome to visit:https://teddysun.com/342.html
 Enjoy it!
-
-``` 
- 
-当然如果需要更改端口和密码。  
-```bash
-vi /etc/shadowsocks.json
 ```
-
+当然如果需要更改端口和密码。
+```bash
+vi /etc/shadowsocks.json  
+```
 ```bash
 {
     "server":"0.0.0.0",
@@ -62,7 +59,6 @@ vi /etc/shadowsocks.json
     "fast_open": false
 }
 ```
-
 多用户设置,直接改上面的json文件如下：  
 ```bash
 {
@@ -90,12 +86,11 @@ vi /etc/shadowsocks.json
 ./shadowsocks.sh uninstall #卸载
 pip install -U shadowsocks #升级
 ```
-真爱生命！远离百度！科学上网！    
-<img src = "http://mineent.me/image/alpharacks.png" class = "img-center">
+珍爱生命！远离百度！科学上网！    
+<img src = "http://minenet.me/image/alpharacks.png" class = "img-center">
   ----------
 [CentOS下shadowsocks-libev一键安装脚本](https://teddysun.com/357.html)  
 
-----------
 
 
 
