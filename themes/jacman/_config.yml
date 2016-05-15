@@ -90,8 +90,8 @@ links:
   suanfazu: http://suanfazu.com
 
 #### Comment
-duoshuo_shortname: xhbyoucan  ## e.g. wuchong   your duoshuo short name.
-disqus_shortname:     ## e.g. wuchong   your disqus short name.
+# duoshuo_shortname: xhbyoucan  ## e.g. wuchong   your duoshuo short name.
+disqus_shortname: minenet   ## e.g. wuchong   your disqus short name.
 
 #### Share button
 jiathis:
