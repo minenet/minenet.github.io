@@ -19,7 +19,7 @@ widgets:
 - tag
 # - tagcloud
 - douban
-- weibo
+# - weibo
 - links
 - rss
   ## provide eight widgets:github-card,category,tag,rss,archive,tagcloud,links,weibo
