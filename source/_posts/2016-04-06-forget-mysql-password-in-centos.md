@@ -9,10 +9,10 @@ tags: [mysql,centos]
 错误如下：  
 ```bash
 1045 access denied for user 'root'@'localhost' using password yes
-```
+```  
 # 解决办法
 最后重新设置密码，结果发现密码忘记了（其实blog配置中有），只有重置了，重置的过程中也是各种问题，最后找到一种比较靠谱的办法。  
-```bash
+```sql
 # /etc/init.d/mysqld stop 
 # mysql_safe --user=mysql --skip-grant-tables --skip-networking & 
 # mysql -u root mysql 
@@ -23,11 +23,10 @@ mysql> quit
 # mysql -uroot -p 
 Enter password: <newpassword> 
 mysql>
-```
-
+```  
 newpassword就是重置后的密码，设置成自己想要的即可。然后重启okay。  
 站点部署在阿里云上，属于本地远程连接云端服务器的数据库，默认的mysql是远程连接是关闭的。需要更改设置才能远程连接访问。密码和和账户对应上即可。  
-```bash
+```sql
 mysql>grant all privileges on *.*  to  'root'@'%'  identified by 'youpassword'  with grant option;
 mysql>flush privileges;
-```
+```  

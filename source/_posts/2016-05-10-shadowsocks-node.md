@@ -28,9 +28,8 @@ Shadowsocks一款代理开源的软件，速度快，多平台使用，灵活代
 wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
 chmod +x shadowsocks.sh
 ./shadowsocks.sh 2>&1 | tee shadowsocks.log
-```
-中间依次要你输入SS密码，和端口，不输入就是默认。自动安装依赖。
-  
+```  
+中间依次要你输入SS密码，和端口，不输入就是默认。自动安装依赖。  
 ```bash
 Congratulations, shadowsocks install completed!
 Your Server IP:your_server_ip
@@ -42,11 +41,11 @@ Your Encryption Method:aes-256-cfb
 
 Welcome to visit:https://teddysun.com/342.html
 Enjoy it!
-```
+```  
 当然如果需要更改端口和密码。
 ```bash
 vi /etc/shadowsocks.json  
-```
+```  
 ```bash
 {
     "server":"0.0.0.0",
@@ -58,7 +57,7 @@ vi /etc/shadowsocks.json
     "method":"aes-256-cfb",
     "fast_open": false
 }
-```
+```  
 多用户设置,直接改上面的json文件如下：  
 ```bash
 {
@@ -76,7 +75,7 @@ vi /etc/shadowsocks.json
     "method":"aes-256-cfb",
     "fast_open": false
 }
-```
+```  
 相关命令：
 ```bash
 /etc/init.d/shadowsocks start #开启
@@ -85,7 +84,7 @@ vi /etc/shadowsocks.json
 /etc/init.d/shadowsocks status	#状态
 ./shadowsocks.sh uninstall #卸载
 pip install -U shadowsocks #升级
-```
+```  
 珍爱生命！远离百度！科学上网！  
 <img src = "http://minenet.me/image/alpharacks.png" class = "img-center">
 <img src = "http://minenet.me/image/google.png" class = "img-center">

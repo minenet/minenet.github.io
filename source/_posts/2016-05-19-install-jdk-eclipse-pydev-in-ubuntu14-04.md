@@ -13,15 +13,14 @@ VMware workshop Pro + ubuntu keylin14.04
 ```bash  
 sudo apt-get remove vim-remove ＃ 卸载
 sudo apt-get install vim  # install full vim
-```
+```  
 ## Root autologin
 ubuntu keylin14.04默认登录不是root，可能是为了安全起见。最简单的判断，命令终端符号是`$`,而不是`#`。  
 首次使用`sudo su`命令切换到`root`，但是每次这样子切换不方便，作为个人本地的虚拟机玩耍，要方便。
    
 ```bash
 vim /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf ＃没有就新建 
-```
-
+```  
 50-ubuntu.conf文件
 ```bash
 [seatDefaults]
@@ -30,7 +29,7 @@ autologin-user=root
 greeter-session=unity-greete
 greeter-show-manual-login=true
 allow-guest=false
-```
+```  
 重启生效！
 ## JDK install
 http：//www.oracle.com/technnetwork/java/javase/downloads  
@@ -49,17 +48,15 @@ export PATH=$JAVA_BIN:$PATH
 source ~/.bashrc # 生效环境变量
 java -version #查看是否出现java版本
 javac 
-```
-
+```  
 ## Eclipse install
 http://www.eclipse.org/downloads/   
-选择了`eclipse-jee-mars-2-linux-gtk-x86_64.tar.gz` 版本, 解压就可以用。
+选择了eclipse-jee-mars-2-linux-gtk-x86_64.tar.gz 版本, 解压就可以用。
 ```bash
 tar -zxvf eclipse-jee-mars-2-linux-gtk-x86_64.tar.gz
 cp -R eclipse /usr/local/
-
-```
- 但是每次启动不方便，需要建立一个桌面快捷键图标。
+```  
+但是每次启动不方便，需要建立一个桌面快捷键图标。
 ```bash
 vim /usr/share/applications/eclipse.desktop
 添加：
@@ -73,13 +70,13 @@ Terminal=false
 StartupNotify=true
 Type=Application
 Categories=Application;Development;
-```
+```  
 完成后可以在Application下看到eclipse图标，双击启动，发现`No java virtual machine`等相关字眼。原因是没有eclipse下jre。 进入eclipse安装目录。
 ```bash
 mkdir jre
 cd jre
 ln -s /usr/local/jdk1.8.0_91/bin bin
-```
+```  
 再次双击发现启动了，copy图标到桌面或拉到任务栏上，方便。
 ## Pydev install
 启动eclipse。

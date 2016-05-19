@@ -15,8 +15,8 @@ tags: classifier
 
 **分析问题**  
 
-某人选择时，目的是选择出所有的女生，结果把30个男生也当做女生选择出来了。对于这次选择，我们得到的相关的人数是20人，不相关的人数是30人。把结果分为四类：TP（true positive）、FP（false positive）、TN（true negative）、FN（false negative） 
-   
+某人选择时，目的是选择出所有的女生，结果把30个男生也当做女生选择出来了。对于这次选择，我们得到的相关的人数是20人，不相关的人数是30人。把结果分为四类：TP（true positive）、FP（false positive）、TN（true negative）、FN（false negative）
+ 
 ||相关（Relevant）、正类|不相关（NoneRevelant）、负类|
 |:-------:|:-------:|:------:|
 |被检索到(Retrieved)|TP 20个女生|FP， 30个被当女生男生|
