@@ -11,7 +11,7 @@ VMware workshop Pro + ubuntu keylin14.04
 ## Vim install
 初次使用Vim真心不适应，尤其ubuntu自带的tiny版的，所以鄙人进行了卸载，重新安装。   
 ```bash  
-sudo apt-get remove vim-remove # 卸载
+sudo apt-get remove vim-remove ＃ 卸载
 sudo apt-get install vim  # install full vim
 ```
 ## Root autologin
@@ -19,7 +19,7 @@ ubuntu keylin14.04默认登录不是root，可能是为了安全起见。最简�
 首次使用`sudo su`命令切换到`root`，但是每次这样子切换不方便，作为个人本地的虚拟机玩耍，要方便。
    
 ```bash
-vim /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf #没有就新建 
+vim /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf ＃没有就新建 
 ```
 
 50-ubuntu.conf文件

@@ -6,7 +6,7 @@ tags: mysql
 toc: false
 ---
 最近忙着处理一个文本数据集，数据不算大，1600万多条论文数据，需要从txt文档中挑选出来合法(合乎我们的要求)的文本数据，剔除的思想不复杂，100行代码足以，用php实现了数据挑选，合法的数据26万条，并插入mysql数据库，并选择了wampserver集成的服务器，简单实用。很有兴致地完成了数据的插入，发现有些数据乱码了，尤其是涉及到作者的名字和发表期刊，带有声调的那种符号，悲剧啊！初期挑选的算法设计的不完善，可是花了近一天时间。由于后期要做推荐，必须使字符合法并不乱码。只有默默地重新做。在设置mysql过程中，发现了个大坑。不多说贴代码：  
-```sql
+```
 mysql> show variables like 'character%';
 +--------------------------+-----------------------------------------------+
 | Variable_name            | Value                                         |
@@ -23,7 +23,7 @@ mysql> show variables like 'character%';
 8 rows in set
 ```
 问题来了，character_set_server | lanti1，如果想改成万能的utf8，发现通过网上的各种方式都改变不了，后来google出来了，现在记录一下。对于不同版本的mysql有不同的修改方式，老版本是在my.ini中 找到mysqld项，追加default_character_set=utf8即可，但是在5.4版本的mysql中就发现不行，就得追加character-set-server=utf8就okay了。重启mysql，show。 
-```sql
+```
 mysql> show variables like 'character%';
 +--------------------------+-----------------------------------------------+
 | Variable_name            | Value                                         |
