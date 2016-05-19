@@ -32,7 +32,7 @@ allow-guest=false
 ```  
 重启生效！
 ## JDK install
-http：//www.oracle.com/technnetwork/java/javase/downloads  
+http://www.oracle.com/technnetwork/java/javase/downloads
 我选择64位`jdk-8u91-linux-x64.tar.gz`
 ```bash
 tar -zxvf jdk-8u91-linux-x64.tar.gz #解压
