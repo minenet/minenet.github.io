@@ -19,8 +19,8 @@ tags: classifier
  
 ||相关（Relevant）、正类|不相关（NoneRevelant）、负类|
 |:-------:|:-------:|:------:|
-|被检索到(Retrieved)|TP 20个女生|FP， 30个被当女生男生|
-|未被检索到(Not Retrieved)|FN，0|TN， 50个男生|
+|被检索到(Retrieved)|TP 20个女生|FP，30个被当女生男生|
+|未被检索到(Not Retrieved)|FN，0|TN，50个男生|
 
 **准确率（accuracy）**
 
