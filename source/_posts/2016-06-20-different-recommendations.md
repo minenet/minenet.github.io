@@ -1,7 +1,7 @@
 ---
 title: 推荐算法的特点
 date: 2016-06-20 15:00:43
-categories: Machine learning
+categories: Machine Learning
 tags:
 ---
 ## 基于内容(CB)的推荐
