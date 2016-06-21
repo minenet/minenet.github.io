@@ -7,10 +7,9 @@ tags:
 最近一直在学习集体智慧编程，第二章开始就学习推荐。用了简单的例子对常见的推荐做了简单的实践应用。上一篇博客中写到了几种常见推荐算法的优劣。现在主要记录几种相似度计算以及部分课后习题的练习。
 ### 欧几里德距离
 计算多维空间的两点的距离，通过距离的远近来表示相似度。  
-$ (p_1,p_2,p_3,\cdots) $  和$ (q_1,q_2,q_3,\cdots) $两个点的欧几里得距离为：  
-$$ Distance = \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2 + \cdots +(p_n-q_n)^2} \tag{1} $$ 
-
-$$  Distance = \sqrt{\sum_{i=1}^n(p_i-q_i)^2}  \tag{2}$$
+$ (p_1,p_2,p_3,\cdots) $和$ (q_1,q_2,q_3,\cdots) $两个点的欧几里得距离为：
+  
+$$ \sqrt{\sum_{i=1}^{n}(p_i-q_i)^2}= \sqrt{(p_1-q_1)^{2} + (p_2-q_2)^2 + \cdots +(p_n-q_n)^2} \tag{1}$$
 
 上面式子中就是求两个点的欧几里德距离。Python代码实现：
 ```py
@@ -22,7 +21,7 @@ return sum**0.5
 ```
 ### 皮尔逊相关系数
 两个变量之间的相关程度，通过这个相关程度表示相似度。  
-$$ r = \frac{\sum{XY}-\frac{\sum{X}\sum{Y}}{N}} {\sqrt{(\sum{X}^2-\frac{(\sum{X})^2}{N})(\sum{Y}^2-\frac{(\sum{Y})^2}{N})}}  \tag{3}$$
+$$ r = \frac{\sum{XY}-\frac{\sum{X}\sum{Y}}{N}} {\sqrt{(\sum{X}^2-\frac{(\sum{X})^2}{N})(\sum{Y}^2-\frac{(\sum{Y})^2}{N})}}  \tag{2}$$
 
 皮尔逊相关系数python实现：
 ```py
@@ -73,7 +72,12 @@ API_SECRET = 'your API_SECRET'
 username = 'your username'
 password_hash = pylast.md5('your password')
 
-network = pylast.LastFMNetwork(api_key = API_KEY, api_secret = API_SECRET, username = username, password_hash = password_hash)
+network = pylast.LastFMNetwork(
+    api_key = API_KEY, 
+    api_secret = API_SECRET, 
+    username = username,
+    password_hash = password_hash
+)
 
 def albumsList(tag=''):
 	albums_list = {}
@@ -115,13 +119,17 @@ def sim_tanimoto(prefs,tag,item):
 print recommendations('rock')
 '''
 print example:
-[(0.07407407407407407, 'hard rock'), (0.06976744186046512, 'classic rock'), (0.06557377049180328, 'alternative rock'), (0.05660377358490566, 'pop'), (0.05084745762711865, 'british')]
+[(0.07407407407407407, 'hard rock'),
+ (0.06976744186046512, 'classic rock'), 
+ (0.06557377049180328, 'alternative rock'), 
+ (0.05660377358490566, 'pop'), 
+ (0.05084745762711865, 'british')]
 
 '''
 if you want get more help, you can use commmand help(pylast) in python command line. 
 ```  
 相似度计算也可以选择其他的，代码中使用了Tanimoto。
-$$ T = \frac{N_c}{N_a + N_b - N_c} \tag{4}$$
+$$ T = \frac{N_c}{N_a + N_b - N_c} \tag{3}$$
 
 其中对于集合A和B，$ N_a,N_b $分别是A,B元素的个数，$ N_c = A \cap B $ 
 
