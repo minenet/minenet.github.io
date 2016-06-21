@@ -1,5 +1,5 @@
 ---
-title: 《集体智慧编程》学习笔记（1）
+title:《集体智慧编程》学习笔记（1）
 date: 2016-06-21 14:36:20
 categories: Machine Learning
 tags:
