@@ -37,7 +37,7 @@ class bicluster:
             for i in range(len(clust)):
                 for j in range(i+1, len(clust)):
                     if(clust[i].id, clust[j].id) not ditances:
-            		distance[(clust[i].id, clust[j].id)] = distance(clust[i].vec, clust[j].vec)
+                        distance[(clust[i].id, clust[j].id)] = distance(clust[i].vec, clust[j].vec)
             
                     d = distance[(clust[i].id, clust[j].id)]
                     if d < closest:
