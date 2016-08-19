@@ -31,9 +31,9 @@ It looks like you are trying to access MongoDB over HTTP on the native driver po
 mongod.exe --logpath e:\mongodb\logs\mongodb.log --logappend --dbpath f:\data\db --serviceName MongoDB --install  # 配置成服务
 net start MongoDB # 启动
 ```  
-<img src = "https://minenet.github.io/image/installMongDB_1.png" class = "img-center">
+<img src = "/image/installMongDB_1.png" class = "img-center">
 cmd执行`services.msc`可以看到。
-<img src = "https://minenet.github.io/image/installMongoDB_2.png" class = "img-center">
+<img src = "/image/installMongoDB_2.png" class = "img-center">
 # MongoDB mange
 首先开启MongoDB`net start MongoDB`  
 cmd中进入到`e:\mongodb\bin`  
