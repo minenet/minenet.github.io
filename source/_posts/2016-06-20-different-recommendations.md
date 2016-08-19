@@ -65,7 +65,7 @@ tags:
 和UserCF算法相比，ItemCF算法的离线实验结果要差一些，不过这是在两者优化前的结果，实际优化后性能是接近的。原始ItemCF算法的覆盖率和新颖度不高的原因可以归结为哈利波特问题，也就是热门物品和其他物品的相似度都很高，这个问题一个办法是惩罚热门物品，同时可能还需要引入物品的内容数据来修正。
 
 其他推荐的优缺点：  
-<img src="http://minenet.me/image/recommendations.png" class="img-center">
+<img src="/image/recommendations.png" class="img-center">
 
 ----------
 参考文献：  
