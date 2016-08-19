@@ -44,7 +44,7 @@ db      # test 默认连接test数据库
 db.runoob.insert({x:10})      # WriteResult({ "nInserted" : 1 }) 数字 10 插入到 runoob 集合的 x 字段中
 db.runoob.find()     # { "_id" : ObjectId("5604ff74a274a611b0c990aa"), "x" : 10 } 查找
 ```  
-<img src = "https://minenet.github.io/image/installMongoDB_3.png" class = "img-center">
+<img src = "/image/installMongoDB_3.png" class = "img-center">
 # Start & Stop
 新建两个txt文件，分别命名为startMongoDB和stopMongoDB，里面分别写入
 ```cmd
