@@ -31,9 +31,9 @@ It looks like you are trying to access MongoDB over HTTP on the native driver po
 mongod.exe --logpath e:\mongodb\logs\mongodb.log --logappend --dbpath f:\data\db --serviceName MongoDB --install  # 配置成服务
 net start MongoDB # 启动
 ```  
-<img src = "http://minenet.me/image/installMongDB_1.png" class = "img-center">
+<img src = "https://minenet.github.io/image/installMongDB_1.png" class = "img-center">
 cmd执行`services.msc`可以看到。
-<img src = "http://minenet.me/image/installMongoDB_2.png" class = "img-center">
+<img src = "https://minenet.github.io/image/installMongoDB_2.png" class = "img-center">
 # MongoDB mange
 首先开启MongoDB`net start MongoDB`  
 cmd中进入到`e:\mongodb\bin`  
@@ -44,7 +44,7 @@ db      # test 默认连接test数据库
 db.runoob.insert({x:10})      # WriteResult({ "nInserted" : 1 }) 数字 10 插入到 runoob 集合的 x 字段中
 db.runoob.find()     # { "_id" : ObjectId("5604ff74a274a611b0c990aa"), "x" : 10 } 查找
 ```  
-<img src = "http://minenet.me/image/installMongoDB_3.png" class = "img-center">
+<img src = "https://minenet.github.io/image/installMongoDB_3.png" class = "img-center">
 # Start & Stop
 新建两个txt文件，分别命名为startMongoDB和stopMongoDB，里面分别写入
 ```cmd
