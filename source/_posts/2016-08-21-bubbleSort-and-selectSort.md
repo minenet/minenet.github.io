@@ -39,6 +39,7 @@ def bubbleSort(arr):
 	#print arr
     return arr
 ``` 
+
 **应用**  
 时间复杂度为O（n^2），稳定。
 ## 简单选择排序
