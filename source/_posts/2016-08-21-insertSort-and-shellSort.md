@@ -1,5 +1,5 @@
 ---
-title: insertSort and shellSort
+title: 插入&希尔排序
 date: 2016-08-21 01:34:02
 categories: Algorithms
 tags: 
