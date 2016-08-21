@@ -14,9 +14,7 @@ def bubbleSort(arr):
     for i in range(length):
         for j in  range(length-1, i, -1):
             if arr[j-1] > arr[j]:
-                temp = arr[j-1]
-                arr[j-1] = arr[j]
-                arr[j] = temp
+                arr[j-1], arr[j] = arr[j], arr[j-1]
         # print arr
     return arr
 ```  
@@ -31,9 +29,7 @@ def bubbleSort(arr):
         flag = False
         for j in  range(length-1, i, -1):
             if arr[j-1] > arr[j]:
-                temp = arr[j-1]
-                arr[j-1] = arr[j]
-                arr[j] = temp
+                arr[j-1], arr[j] = arr[j], arr[j-1]
                 flag = True
         if flag is False: #发现某一遍比较，没有一次交换就说明有序，退出循环。
             break
