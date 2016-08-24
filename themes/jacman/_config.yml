@@ -70,7 +70,7 @@ author:
   twitter:    ## e.g. jarkwu for https://twitter.com/jarkwu
   github:  minenet   ## e.g. wuchong for https://github.com/wuchong
   facebook: minenet ## e.g. imjark for https://facebook.com/imjark
-  linkedin:   ## e.g. wuchong1014 for https://www.linkedin.com/in/wuchong1014
+  linkedin: https://www.linkedin.com/in/minenet  ## e.g. wuchong1014 for https://www.linkedin.com/in/wuchong1014
   google_plus:    ## e.g. "111190881341800841449" for https://plus.google.com/u/0/111190881341800841449, the "" is needed!
   stackoverflow: 7252941 ## e.g. 3222790 for http://stackoverflow.com/users/3222790/jark
 ## if you set them, the corresponding  share button will show on the footer
