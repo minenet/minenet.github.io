@@ -3,5 +3,5 @@
 hexo clean
 hexo d -g
 git add .
-git commit -am "update blog source"
+git commit -m "update blog source"
 git push origin source
