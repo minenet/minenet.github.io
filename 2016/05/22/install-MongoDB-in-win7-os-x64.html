@@ -1,0 +1,658 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Win7下安装MongoDB | Minenet&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Minenet">
+    
+
+    
+    <meta name="description" content="EnvironmentOS：win7 os x64MongoDB version : mongodb-win32-x86_64-2008plus-ssl-3.2.6-signed.msi   Install and create DB安装直接点击next 即可，我选择安装的路径为E:\mongodb。创建数据库存储路径目录F盘。     mkdir data cd data mkdir db cd">
+<meta name="keywords" content="MongoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Win7下安装MongoDB">
+<meta property="og:url" content="https://minenet.github.io/2016/05/22/install-MongoDB-in-win7-os-x64.html">
+<meta property="og:site_name" content="Minenet&#39;s Blog">
+<meta property="og:description" content="EnvironmentOS：win7 os x64MongoDB version : mongodb-win32-x86_64-2008plus-ssl-3.2.6-signed.msi   Install and create DB安装直接点击next 即可，我选择安装的路径为E:\mongodb。创建数据库存储路径目录F盘。     mkdir data cd data mkdir db cd">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://minenet.github.io/image/installMongDB_1.png">
+<meta property="og:image" content="https://minenet.github.io/image/installMongoDB_2.png">
+<meta property="og:image" content="https://minenet.github.io/image/installMongoDB_3.png">
+<meta property="og:updated_time" content="2018-04-19T10:43:50.693Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Win7下安装MongoDB">
+<meta name="twitter:description" content="EnvironmentOS：win7 os x64MongoDB version : mongodb-win32-x86_64-2008plus-ssl-3.2.6-signed.msi   Install and create DB安装直接点击next 即可，我选择安装的路径为E:\mongodb。创建数据库存储路径目录F盘。     mkdir data cd data mkdir db cd">
+<meta name="twitter:image" content="https://minenet.github.io/image/installMongDB_1.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Minenet&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Minenet&#39;s Blog">Minenet&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Record study and growth bit by bit !</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/peruse">读书</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/22/install-MongoDB-in-win7-os-x64.html" title="Win7下安装MongoDB" itemprop="url">Win7下安装MongoDB</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Minenet" target="_blank" itemprop="author">Minenet</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-21T17:06:41.000Z" itemprop="datePublished"> 发表于 2016-05-22 01:06:41</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Environment"><span class="toc-number">1.</span> <span class="toc-text">Environment</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-and-create-DB"><span class="toc-number">2.</span> <span class="toc-text">Install and create DB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB-mange"><span class="toc-number">3.</span> <span class="toc-text">MongoDB mange</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Start-amp-Stop"><span class="toc-number">4.</span> <span class="toc-text">Start &amp; Stop</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><p>OS：win7 os x64<br>MongoDB version : <a href="http://www.mongodb.org/downloads" target="_blank" rel="noopener">mongodb-win32-x86_64-2008plus-ssl-3.2.6-signed.msi</a>  </p>
+<h1 id="Install-and-create-DB"><a href="#Install-and-create-DB" class="headerlink" title="Install and create DB"></a>Install and create DB</h1><p>安装直接点击<code>next</code> 即可，我选择安装的路径为<code>E:\mongodb</code>。创建数据库存储路径目录<code>F</code>盘。    </p>
+<pre><code class="cmd"><span class="built_in">mkdir</span> data
+<span class="built_in">cd</span> data
+<span class="built_in">mkdir</span> db
+<span class="built_in">cd</span> db
+</code></pre>
+<p>创建存储路径为<code>f:\data\db</code>。当然可以直接在对应目录手动创建。<br>启动MongoDB服务器，需要进入到MongoDB安装路径的<code>bin</code>下。我的是<code>e:\mongodb\bin</code>    </p>
+<pre><code class="cmd">mongod.exe --dbpath f:\data\db
+</code></pre>
+<p>执行成功后可以看到一个waiting for connections on port 27017。就说明成功了直接访问localhost:27017,可以看到如下  </p>
+<pre><code class="cmd">It looks like you are trying to access MongoDB over HTTP on the native driver port.
+</code></pre>
+<p>但是，这样子每次进入需要进入到安装目录启动MongoDB，太麻烦了，可以直接把MongoDB当做系统的服务运行即可，我们顺便可以写两个小脚本运行，开启和关闭。<br>首次我们在E:\mongodb下新建logs文件夹，并随后在logs新建文件mongodb.log,即e:\mongodb\logs\mongodb.log<br>还是进入到<code>bin</code>目录。   </p>
+<pre><code class="cmd">mongod.exe --logpath e:\mongodb\logs\mongodb.log --logappend --dbpath f:\data\db --serviceName MongoDB --install  # 配置成服务
+<span class="built_in">net</span> <span class="built_in">start</span> MongoDB # 启动
+</code></pre>
+<p><img src="/image/installMongDB_1.png" class="img-center"><br>cmd执行<code>services.msc</code>可以看到。<br><img src="/image/installMongoDB_2.png" class="img-center"></p>
+<h1 id="MongoDB-mange"><a href="#MongoDB-mange" class="headerlink" title="MongoDB mange"></a>MongoDB mange</h1><p>首先开启MongoDB<code>net start MongoDB</code><br>cmd中进入到<code>e:\mongodb\bin</code>  </p>
+<pre><code class="cmd">mongo.exe
+<span class="number">1</span>+<span class="number">1</span>     # <span class="number">2</span>
+db      # test 默认连接test数据库
+db.runoob.insert({x:<span class="number">10</span>})      # WriteResult({ "nInserted" : <span class="number">1</span> }) 数字 <span class="number">10</span> 插入到 runoob 集合的 x 字段中
+db.runoob.<span class="built_in">find</span>()     # { "_id" : ObjectId("<span class="number">5604</span>ff74a274a611b0c990aa"), "x" : <span class="number">10</span> } 查找
+</code></pre>
+<p><img src="/image/installMongoDB_3.png" class="img-center"></p>
+<h1 id="Start-amp-Stop"><a href="#Start-amp-Stop" class="headerlink" title="Start &amp; Stop"></a>Start &amp; Stop</h1><p>新建两个txt文件，分别命名为startMongoDB和stopMongoDB，里面分别写入</p>
+<pre><code class="cmd"><span class="built_in">net</span> <span class="built_in">start</span> MongoDB
+</code></pre>
+<pre><code class="cmd"><span class="built_in">net</span> stop MongoDB
+</code></pre>
+<p>保存后，修改txt文件后缀名为<code>bat</code>成为批处理文件，每次直接双击就行（有的需要在‘管理员身份’运行），自由进行MongoDB开启和关闭。<br>开始玩耍MongoDB吧！<br>（tips：推荐一本MongoDB入门实践书籍<a href="https://book.douban.com/subject/26333934/" target="_blank" rel="noopener">大数据存储MongoDB实战指南</a> 老乡威哥的书籍，支持！）</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Database/">Database</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/MongoDB/">MongoDB</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://minenet.github.io/2016/05/22/install-MongoDB-in-win7-os-x64.html" data-title="Win7下安装MongoDB | Minenet&#39;s Blog" data-tsina="2650384192" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/06/20/different-recommendations.html" title="推荐算法的特点">
+  <strong>上一篇：</strong><br/>
+  <span>
+  推荐算法的特点</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/19/install-jdk-eclipse-pydev-in-ubuntu14-04.html"  title="Ubuntu14.04安装JDK+Eclipse+Pydev">
+ <strong>下一篇：</strong><br/> 
+ <span>Ubuntu14.04安装JDK+Eclipse+Pydev
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Environment"><span class="toc-number">1.</span> <span class="toc-text">Environment</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-and-create-DB"><span class="toc-number">2.</span> <span class="toc-text">Install and create DB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB-mange"><span class="toc-number">3.</span> <span class="toc-text">MongoDB mange</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Start-amp-Stop"><span class="toc-number">4.</span> <span class="toc-text">Start &amp; Stop</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Algorithms/" title="Algorithms">Algorithms<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Database/" title="Database">Database<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Summary/" title="Summary">Summary<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/2015/" title="2015">2015<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mathjs/" title="mathjs">mathjs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/classifier/" title="classifier">classifier<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MongoDB/" title="MongoDB">MongoDB<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DataStructure/" title="DataStructure">DataStructure<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://veryyoung.me" target="_blank" title="veryyoung">veryyoung</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.gonjay.com" target="_blank" title="gonjay">gonjay</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.v2ex.com" target="_blank" title="v2ex">v2ex</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://suanfazu.com" target="_blank" title="suanfazu">suanfazu</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="devtang">devtang</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry , Stay foolish ! <br/>
+			This is my blog , believe it or not !</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2650384192" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/minenet" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/7252941" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		<a href="https://www.facebook.com/minenet" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/minenet" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Minenet">Minenet</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'minenet';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$("table").wrap("<div class='table-area'></div>");/*防止表格溢出*/
+});
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

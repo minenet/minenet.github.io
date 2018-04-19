@@ -1,0 +1,661 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>hexo中如何在多台PC中部署 | Minenet&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Minenet">
+    
+
+    
+    <meta name="description" content="最近几天把博客进行了重构，之前在阿里云部署的thinkjs+easyou博客很不友好，各种bug，尤其是对代码支持和blog文章的格式。Blog选择了流行的hexo+jacman，并最后优雅的使用了Markdown，真是爽极了。 如何安装使用hexo+jacman关于如何安装，由于hexo是基于nodejs，速度很快。用的很多，安装首先安装nodejs，然后依次安装npm和hexo。至于步骤网上已">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo中如何在多台PC中部署">
+<meta property="og:url" content="https://minenet.github.io/2016/04/04/how-to-deploy-in-differernt-pc.html">
+<meta property="og:site_name" content="Minenet&#39;s Blog">
+<meta property="og:description" content="最近几天把博客进行了重构，之前在阿里云部署的thinkjs+easyou博客很不友好，各种bug，尤其是对代码支持和blog文章的格式。Blog选择了流行的hexo+jacman，并最后优雅的使用了Markdown，真是爽极了。 如何安装使用hexo+jacman关于如何安装，由于hexo是基于nodejs，速度很快。用的很多，安装首先安装nodejs，然后依次安装npm和hexo。至于步骤网上已">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-19T10:43:50.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo中如何在多台PC中部署">
+<meta name="twitter:description" content="最近几天把博客进行了重构，之前在阿里云部署的thinkjs+easyou博客很不友好，各种bug，尤其是对代码支持和blog文章的格式。Blog选择了流行的hexo+jacman，并最后优雅的使用了Markdown，真是爽极了。 如何安装使用hexo+jacman关于如何安装，由于hexo是基于nodejs，速度很快。用的很多，安装首先安装nodejs，然后依次安装npm和hexo。至于步骤网上已">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Minenet&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Minenet&#39;s Blog">Minenet&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Record study and growth bit by bit !</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/peruse">读书</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/04/how-to-deploy-in-differernt-pc.html" title="hexo中如何在多台PC中部署" itemprop="url">hexo中如何在多台PC中部署</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Minenet" target="_blank" itemprop="author">Minenet</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-04T06:38:40.000Z" itemprop="datePublished"> 发表于 2016-04-04 14:38:40</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何安装使用hexo-jacman"><span class="toc-number">1.</span> <span class="toc-text">如何安装使用hexo+jacman</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何部署在多台电脑中deploy"><span class="toc-number">2.</span> <span class="toc-text">如何部署在多台电脑中deploy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用git管理blog"><span class="toc-number">2.1.</span> <span class="toc-text">利用git管理blog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用"><span class="toc-number">2.2.</span> <span class="toc-text">如何使用</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>最近几天把博客进行了重构，之前在阿里云部署的thinkjs+easyou博客很不友好，各种<code>bug</code>，尤其是对代码支持和blog文章的格式。Blog选择了流行的hexo+jacman，并最后优雅的使用了Markdown，真是爽极了。</p>
+<h1 id="如何安装使用hexo-jacman"><a href="#如何安装使用hexo-jacman" class="headerlink" title="如何安装使用hexo+jacman"></a>如何安装使用hexo+jacman</h1><p>关于如何安装，由于hexo是基于nodejs，速度很快。用的很多，安装首先安装<code>nodejs</code>，然后依次安装<code>npm</code>和<code>hexo</code>。至于步骤网上已经很多了。这里附上一个<a href="http://wuchong.me/blog/2014/11/20/how-to-use-jacman/" target="_blank" rel="noopener">如何使用jacman主题</a>。按照上面的步骤一步步走。这里就不多说了。</p>
+<h1 id="如何部署在多台电脑中deploy"><a href="#如何部署在多台电脑中deploy" class="headerlink" title="如何部署在多台电脑中deploy"></a>如何部署在多台电脑中deploy</h1><h2 id="利用git管理blog"><a href="#利用git管理blog" class="headerlink" title="利用git管理blog"></a>利用git管理blog</h2><p>网上有部分资源可以利用但是不是很全，这次学习了多篇大牛的博客才明白，中间出现过坑（PS：鄙人是初学者，大牛求轻拍！），不过度都解决了。  </p>
+<p>按照jacman主题的安装，我们已经将Blog部署上去<code>github</code>上了, 当登录github时，发现，全部是渲染后的结果，不符合我们的预期。如何利用github管理博客源代码和渲染展示的博客。大致思路是利用repository中的username.github.io仓库，利用了两个分支，一个master分支，一个是source分支，一个放源代码一个放渲染。 </p>
+<ol>
+<li>我们在本地的blog根目录下，利用<code>git init</code>命令进行初始化仓库。然后进行如下命令:  <pre><code class="bash">$ git add .  ＃存到缓存区
+$ git commit -am <span class="string">"commit blog"</span> ＃提交
+</code></pre>
+</li>
+<li>建立source分支，并将源代码push到github。 <pre><code class="bash">$ git branch <span class="built_in">source</span> ＃创建<span class="built_in">source</span>     
+$ git checkout <span class="built_in">source</span> ＃切换到分支    
+$ git remote -v ＃查看远程分支    
+$ git push origin <span class="built_in">source</span>
+</code></pre>
+注意：在我们推之前我们首先要删除<code>theme/jacma</code>下的<code>.git</code>文件，该文件夹是隐藏的，显示隐藏后删除，不然push不上去。<br>其实很多技术博客中需要修改blog根目录下的<code>.gitignore</code>文件，其实这与版本的不同有关系，我的版本中就不用修改，不过最好事先查看。需要添加<code>public/</code>和<code>.deploy*/</code> ，因为这两个文件每次部署时都会生成。没必要<code>push</code>上去，我的<code>.gitignore</code>文件：  <pre><code class="bash">.DS_Store
+Thumbs.db
+db.json
+*.<span class="built_in">log</span>
+node_modules/
+public/
+.deploy*/
+</code></pre>
+3.完成上去过程后，这就完成了github管理hexo源代码。如果我们想在另一台电脑写博客，比如刚刚我们在公司的电脑上部署好了，回家了突发灵感，要写，对于没有后台的hexo来说，就有点尴尬了，不过还好有强大的github。<br>在新的电脑B中，我们也时先安装nodejs，npm，hexo，添加ssh，然后与远程的source分支进行绑定，这样子我们就完成了两台部署，第三台也是这样子。    <pre><code class="bash">$ git <span class="built_in">clone</span> -b <span class="built_in">source</span> git@github.com:username/username.github.io.git
+</code></pre>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2>在任何已经部署完成的电脑中，首先我们得pull最新的分支，master和source，然后push，这样子会有很多步骤需要做。如果玩过shell编程的都知道，把这些写成shell脚本，自动执行是不是很nice。<br>编辑两个文件，一个fetch.sh,一个submit.sh。<br>fetch文件：<pre><code class="bash">＃File Name: fetch.sh
+＃!/bin/bash
+git pull origin <span class="built_in">source</span>
+<span class="built_in">cd</span> .deploy_git/
+git pull
+</code></pre>
+submit文件：<pre><code class="bash">＃File Name: submit.sh
+＃!/bin/bash
+hexo d -g
+git add .
+git commit -am <span class="string">"update blog source"</span>
+git push origin <span class="built_in">source</span>
+</code></pre>
+每次编辑之前，先运行fetch.sh,执行代码<code>./fetch.sh</code>,编辑完结束，然后就运行<code>./submit.sh</code>,一切okay。中间如果出现有需要输入密码的情况，那是因为你在添加ssh key时设置了秘钥，其实无秘钥部署更nice，设置密码时直接回车两次就默认密码为空了，方便不少。<br>如有问题Google和issue。</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Blog/">Blog</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hexo/">hexo</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://minenet.github.io/2016/04/04/how-to-deploy-in-differernt-pc.html" data-title="hexo中如何在多台PC中部署 | Minenet&#39;s Blog" data-tsina="2650384192" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/04/05/how-to-use-mathjax.html" title="如何优雅的写数学公式（MathJax）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  如何优雅的写数学公式（MathJax）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/02/forget-mysql-password-in-centos.html"  title="忘记Mysql密码的解决办法">
+ <strong>下一篇：</strong><br/> 
+ <span>忘记Mysql密码的解决办法
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何安装使用hexo-jacman"><span class="toc-number">1.</span> <span class="toc-text">如何安装使用hexo+jacman</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何部署在多台电脑中deploy"><span class="toc-number">2.</span> <span class="toc-text">如何部署在多台电脑中deploy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用git管理blog"><span class="toc-number">2.1.</span> <span class="toc-text">利用git管理blog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用"><span class="toc-number">2.2.</span> <span class="toc-text">如何使用</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Algorithms/" title="Algorithms">Algorithms<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Database/" title="Database">Database<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Summary/" title="Summary">Summary<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/2015/" title="2015">2015<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mathjs/" title="mathjs">mathjs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/classifier/" title="classifier">classifier<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MongoDB/" title="MongoDB">MongoDB<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DataStructure/" title="DataStructure">DataStructure<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://veryyoung.me" target="_blank" title="veryyoung">veryyoung</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.gonjay.com" target="_blank" title="gonjay">gonjay</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.v2ex.com" target="_blank" title="v2ex">v2ex</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://suanfazu.com" target="_blank" title="suanfazu">suanfazu</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="devtang">devtang</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry , Stay foolish ! <br/>
+			This is my blog , believe it or not !</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2650384192" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/minenet" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/7252941" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		<a href="https://www.facebook.com/minenet" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/minenet" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Minenet">Minenet</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'minenet';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$("table").wrap("<div class='table-area'></div>");/*防止表格溢出*/
+});
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

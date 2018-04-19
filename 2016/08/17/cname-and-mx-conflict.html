@@ -1,0 +1,633 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>解决CNAME和MX记录冲突 | Minenet&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Minenet">
+    
+
+    
+    <meta name="description" content="kloudsec由于公司资金原因关闭，加上证书的过期，维持不到半年的小绿锁突然消失了，第三方的转发缘故，网站也不能访问，需要重新设置解析。首先让网站能访问起来。 设置解析域名购买和备案都在阿里云，在控制台重新设置解析时，又遇见问题，MX的记录和CNAME冲突（申请过免费的企业邮箱），免费的企业邮箱虽然没怎么用，但是还是想保留着。之前https属于转发，访问站点时，我的理解是先访问Kloudsec，">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决CNAME和MX记录冲突">
+<meta property="og:url" content="https://minenet.github.io/2016/08/17/cname-and-mx-conflict.html">
+<meta property="og:site_name" content="Minenet&#39;s Blog">
+<meta property="og:description" content="kloudsec由于公司资金原因关闭，加上证书的过期，维持不到半年的小绿锁突然消失了，第三方的转发缘故，网站也不能访问，需要重新设置解析。首先让网站能访问起来。 设置解析域名购买和备案都在阿里云，在控制台重新设置解析时，又遇见问题，MX的记录和CNAME冲突（申请过免费的企业邮箱），免费的企业邮箱虽然没怎么用，但是还是想保留着。之前https属于转发，访问站点时，我的理解是先访问Kloudsec，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://minenet.github.io/image/record.png">
+<meta property="og:updated_time" content="2018-04-19T10:43:50.693Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决CNAME和MX记录冲突">
+<meta name="twitter:description" content="kloudsec由于公司资金原因关闭，加上证书的过期，维持不到半年的小绿锁突然消失了，第三方的转发缘故，网站也不能访问，需要重新设置解析。首先让网站能访问起来。 设置解析域名购买和备案都在阿里云，在控制台重新设置解析时，又遇见问题，MX的记录和CNAME冲突（申请过免费的企业邮箱），免费的企业邮箱虽然没怎么用，但是还是想保留着。之前https属于转发，访问站点时，我的理解是先访问Kloudsec，">
+<meta name="twitter:image" content="https://minenet.github.io/image/record.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Minenet&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Minenet&#39;s Blog">Minenet&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Record study and growth bit by bit !</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/peruse">读书</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/08/17/cname-and-mx-conflict.html" title="解决CNAME和MX记录冲突" itemprop="url">解决CNAME和MX记录冲突</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Minenet" target="_blank" itemprop="author">Minenet</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-17T13:16:48.000Z" itemprop="datePublished"> 发表于 2016-08-17 21:16:48</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置解析"><span class="toc-number">1.</span> <span class="toc-text">设置解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudflare的申请"><span class="toc-number">2.</span> <span class="toc-text">cloudflare的申请</span></a></li></ol>
+		
+		</div>
+		
+		<p>kloudsec由于公司资金原因关闭，加上证书的过期，维持不到半年的小绿锁突然消失了，第三方的转发缘故，网站也不能访问，需要重新设置解析。首先让网站能访问起来。</p>
+<h3 id="设置解析"><a href="#设置解析" class="headerlink" title="设置解析"></a>设置解析</h3><p>域名购买和备案都在阿里云，在控制台重新设置解析时，又遇见问题，MX的记录和CNAME冲突（申请过免费的企业邮箱），免费的企业邮箱虽然没怎么用，但是还是想保留着。之前https属于转发，访问站点时，我的理解是先访问Kloudsec，然后Kloudsec的服务器访问github io,把消息反馈给服务器，然后加密处理呈现给用户。是一种伪证书，因为github pages是不支持上传个人证书的，尽管现在github pages全面支持https了，那只是针对<code>username.github.io</code>，如果是使用的是个性域名，则不能安全访问。由于博客属于静态页面，为了满足一点逼格，就利用免费的第三方（学生党，穷！）转发，选择cloudflare。<br>回到问题的，如何解决冲突，搜了一下都好像没有一个比较明确的答案，很多答案是选择了第三方的DNS供应商。比如<a href="https://www.dnspod.cn/" target="_blank" rel="noopener">DNSpod</a>，可以共存，但是会提示你，邮件可能会丢失的风险，也就是说可能发的出去，但是收不到的情况。其实这是国际惯例，在RFC解析协议中，CNAME记录的优先级高于MX记录的优先级，且不能共存。为了解决这种风险，所采用的方式就是，先对WWW做CNAME记录，然后对@做A记录指向github page的ip，相当于做了一次跳转。<br><img src="/image/record.png" class="img-center"></p>
+<p>然后就是等待DNS的刷新，稍后就可以访问了。</p>
+<h3 id="cloudflare的申请"><a href="#cloudflare的申请" class="headerlink" title="cloudflare的申请"></a>cloudflare的申请</h3><ul>
+<li><a href="https://www.cloudflare.com" target="_blank" rel="noopener">cloudflare</a>官网直接申请个账号。</li>
+<li>添加域名，然后scan。</li>
+<li>在域名供应商或第三方的DNS供应商那里修改成由clouudflare提供的DNS。</li>
+<li>等待吧。。。（需要一段时间），就会出现久违的小绿锁。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Blog/">Blog</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/git/">git</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://minenet.github.io/2016/08/17/cname-and-mx-conflict.html" data-title="解决CNAME和MX记录冲突 | Minenet&#39;s Blog" data-tsina="2650384192" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/08/21/insertSort-and-shellSort.html" title="插入&amp;希尔排序">
+  <strong>上一篇：</strong><br/>
+  <span>
+  插入&amp;希尔排序</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/06/30/Hierarchical-clustering.html"  title="分层聚类算法">
+ <strong>下一篇：</strong><br/> 
+ <span>分层聚类算法
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置解析"><span class="toc-number">1.</span> <span class="toc-text">设置解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudflare的申请"><span class="toc-number">2.</span> <span class="toc-text">cloudflare的申请</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Algorithms/" title="Algorithms">Algorithms<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Database/" title="Database">Database<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Summary/" title="Summary">Summary<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/2015/" title="2015">2015<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mathjs/" title="mathjs">mathjs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/classifier/" title="classifier">classifier<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MongoDB/" title="MongoDB">MongoDB<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DataStructure/" title="DataStructure">DataStructure<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://veryyoung.me" target="_blank" title="veryyoung">veryyoung</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.gonjay.com" target="_blank" title="gonjay">gonjay</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.v2ex.com" target="_blank" title="v2ex">v2ex</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://suanfazu.com" target="_blank" title="suanfazu">suanfazu</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="devtang">devtang</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry , Stay foolish ! <br/>
+			This is my blog , believe it or not !</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2650384192" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/minenet" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/7252941" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		<a href="https://www.facebook.com/minenet" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/minenet" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Minenet">Minenet</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'minenet';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$("table").wrap("<div class='table-area'></div>");/*防止表格溢出*/
+});
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

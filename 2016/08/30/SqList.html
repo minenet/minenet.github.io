@@ -1,0 +1,636 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>线性表的顺序存储(Python实现) | Minenet&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Minenet">
+    
+
+    
+    <meta name="description" content="线性表的顺序存储用一段地址连续地存储单元依次存储线性表的数据元素。优点：  无需增加额外的操作。 快速存取任一元素。  缺点：  插入和删除需要移动大量的元素。 长度较大时，无法确定存储空间。 有碎片。  结构和操作比较简单，不在赘述。Google后，发现Python实现的各种版本都有，有些漏洞百出。虽然原理简单，实现起来还是要花点时间，正好加深Python的学习。过程不在重复，注释和test部分">
+<meta name="keywords" content="DataStructure">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性表的顺序存储(Python实现)">
+<meta property="og:url" content="https://minenet.github.io/2016/08/30/SqList.html">
+<meta property="og:site_name" content="Minenet&#39;s Blog">
+<meta property="og:description" content="线性表的顺序存储用一段地址连续地存储单元依次存储线性表的数据元素。优点：  无需增加额外的操作。 快速存取任一元素。  缺点：  插入和删除需要移动大量的元素。 长度较大时，无法确定存储空间。 有碎片。  结构和操作比较简单，不在赘述。Google后，发现Python实现的各种版本都有，有些漏洞百出。虽然原理简单，实现起来还是要花点时间，正好加深Python的学习。过程不在重复，注释和test部分">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-19T10:43:50.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线性表的顺序存储(Python实现)">
+<meta name="twitter:description" content="线性表的顺序存储用一段地址连续地存储单元依次存储线性表的数据元素。优点：  无需增加额外的操作。 快速存取任一元素。  缺点：  插入和删除需要移动大量的元素。 长度较大时，无法确定存储空间。 有碎片。  结构和操作比较简单，不在赘述。Google后，发现Python实现的各种版本都有，有些漏洞百出。虽然原理简单，实现起来还是要花点时间，正好加深Python的学习。过程不在重复，注释和test部分">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Minenet&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Minenet&#39;s Blog">Minenet&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Record study and growth bit by bit !</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/peruse">读书</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/08/30/SqList.html" title="线性表的顺序存储(Python实现)" itemprop="url">线性表的顺序存储(Python实现)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Minenet" target="_blank" itemprop="author">Minenet</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-29T20:08:15.000Z" itemprop="datePublished"> 发表于 2016-08-30 04:08:15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线性表的顺序存储"><span class="toc-number">1.</span> <span class="toc-text">线性表的顺序存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-number">1.1.</span> <span class="toc-text">test</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="线性表的顺序存储"><a href="#线性表的顺序存储" class="headerlink" title="线性表的顺序存储"></a>线性表的顺序存储</h2><p>用一段地址连续地存储单元依次存储线性表的数据元素。<br>优点：</p>
+<ol>
+<li>无需增加额外的操作。</li>
+<li>快速存取任一元素。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>插入和删除需要移动大量的元素。</li>
+<li>长度较大时，无法确定存储空间。</li>
+<li>有碎片。</li>
+</ol>
+<p>结构和操作比较简单，不在赘述。Google后，发现Python实现的各种版本都有，有些漏洞百出。虽然原理简单，实现起来还是要花点时间，正好加深Python的学习。过程不在重复，注释和test部分写的很详细，不说了上码。<br>Python实现<br><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*- </span></span><br><span class="line"><span class="comment"># author：minenet</span></span><br><span class="line"><span class="comment"># date: 2016-8-30 04:15:47 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SqList</span><span class="params">(object)</span>:</span></span><br><span class="line"> </span><br><span class="line">    <span class="string">''''' </span></span><br><span class="line"><span class="string">        线性表顺序存储表,线性表第一个元素的下标为1，数组的下标为0</span></span><br><span class="line"><span class="string">    '''</span><span class="string">''</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, maxSize)</span>:</span></span><br><span class="line">        self.maxSize = maxSize <span class="comment"># 存储空间初始分配量</span></span><br><span class="line">        self.data = range(maxSize) <span class="comment">#数组存储元素的最大长度</span></span><br><span class="line">        self.last = <span class="number">-1</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, key)</span>:</span>  </span><br><span class="line">        <span class="string">'''''索引器 get,实现SqList[key]获得value'''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'SeqList is empty!'</span>  </span><br><span class="line">            <span class="keyword">return</span>  </span><br><span class="line">        <span class="keyword">elif</span> key &lt; <span class="number">1</span> <span class="keyword">or</span> key &gt; self.last +<span class="number">1</span>:  <span class="comment">#key不在线性表内</span></span><br><span class="line">            <span class="keyword">print</span> <span class="string">'the given key is Error'</span>  </span><br><span class="line">            <span class="keyword">return</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">return</span> self.data[key<span class="number">-1</span>]</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(self, key, value)</span>:</span>  </span><br><span class="line">        <span class="string">'''''索引器 set，实现SqList[key]的赋值'''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'SeqList is empty!'</span>  </span><br><span class="line">            <span class="keyword">return</span>  </span><br><span class="line">        <span class="keyword">if</span> key &lt; <span class="number">1</span> <span class="keyword">or</span> key &gt; self.last + <span class="number">1</span>:  <span class="comment">#key不在线性表内</span></span><br><span class="line">            <span class="keyword">print</span> <span class="string">'the given key is Error'</span>  </span><br><span class="line">            <span class="keyword">return</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            self.data[key<span class="number">-1</span>] = value</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        <span class="string">'''''长度，实现len(SqList)'''</span>  </span><br><span class="line">        length = self.last + <span class="number">1</span>  </span><br><span class="line">        <span class="keyword">return</span> length</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getLength</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        <span class="string">'''''顺序表长度'''</span>  </span><br><span class="line">        <span class="keyword">return</span> self.last + <span class="number">1</span>  </span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clear</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        <span class="string">'''''清空顺序表'''</span>  </span><br><span class="line">        self.last = <span class="number">-1</span>  </span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        <span class="string">'''''顺序表是否为空'''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.last == <span class="number">-1</span>:  </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>  </span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isFull</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        <span class="string">'''''判断顺序表是否满了'''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.last == self.maxSize - <span class="number">1</span>:  </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>  </span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getElem</span><span class="params">(self, index)</span>:</span>  </span><br><span class="line">        <span class="string">'''''根据索引获取元素'''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'SeqList is empty!'</span>  </span><br><span class="line">        <span class="keyword">elif</span> index &lt; <span class="number">1</span> <span class="keyword">or</span> index &gt; self.last + <span class="number">1</span>:  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'Position is error'</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">return</span> self.data[index<span class="number">-1</span>]  </span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getIndex</span><span class="params">(self, elem)</span>:</span>  </span><br><span class="line">        <span class="string">'''''根据元素获取索引'''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'SeqList is empty!'</span>  </span><br><span class="line">            <span class="keyword">return</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(self.last + <span class="number">1</span>):  </span><br><span class="line">                <span class="keyword">if</span> self.data[i] == elem:  </span><br><span class="line">                    <span class="keyword">return</span> i + <span class="number">1</span> </span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">append</span><span class="params">(self, elem)</span>:</span>  </span><br><span class="line">        <span class="string">'''''向顺序表尾插入一个元素'''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.isFull():  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'SeqList is full'</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            self.last += <span class="number">1</span>  </span><br><span class="line">            self.data[self.last] = elem  </span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, index, elem)</span>:</span>  </span><br><span class="line">        <span class="string">'''''</span></span><br><span class="line"><span class="string">        初始条件:顺序线性表已存在， 1 &lt;= index &lt;= self.last + 1</span></span><br><span class="line"><span class="string">        操作结果:在index前面插入新元素，并长度加1 </span></span><br><span class="line"><span class="string">        '''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.isFull():  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'SeqList is full'</span>  </span><br><span class="line">            <span class="keyword">return</span>  </span><br><span class="line">        <span class="keyword">elif</span> index &lt; <span class="number">1</span> <span class="keyword">or</span> index &gt; self.last + <span class="number">1</span>:  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'Position is error'</span>  </span><br><span class="line">            <span class="keyword">return</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(self.last, index<span class="number">-2</span>, <span class="number">-1</span>):  <span class="comment">#index-1位置后面的全部元素往后移动1位</span></span><br><span class="line">                self.data[i + <span class="number">1</span>] = self.data[i]  </span><br><span class="line">            self.data[index<span class="number">-1</span>] = elem  <span class="comment">#插入</span></span><br><span class="line">            self.last += <span class="number">1</span>  <span class="comment">#长度加1</span></span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self, index)</span>:</span>  </span><br><span class="line">        <span class="string">'''''删除元素'''</span>  </span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">"SeqList is empty"</span>  </span><br><span class="line">            <span class="keyword">return</span>  </span><br><span class="line">        <span class="keyword">elif</span> index &lt; <span class="number">1</span> <span class="keyword">or</span> index &gt; self.last + <span class="number">1</span>:  </span><br><span class="line">            <span class="keyword">print</span> <span class="string">'Position is error'</span>  </span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(index, self.last+<span class="number">1</span>): <span class="comment">#index后面的元素全部往前移动一位。</span></span><br><span class="line">                self.data[i<span class="number">-1</span>] = self.data[i]</span><br><span class="line">            self.last -= <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">s = SqList(<span class="number">5</span>) <span class="comment"># data = [0, 1, 2, 3, 4]   s = None</span></span><br><span class="line">s.append(<span class="number">5</span>)   <span class="comment"># data = [5, 1, 2, 3, 4]     s = [5]</span></span><br><span class="line">s.insert(<span class="number">1</span>, <span class="number">6</span>) <span class="comment"># data = [6, 5, 2, 3, 4]  s = [6, 5]</span></span><br><span class="line">s.insert(<span class="number">1</span>, <span class="number">7</span>) <span class="comment"># data = [7, 6, 5, 3, 4]   s = [7, 6, 5]</span></span><br><span class="line"></span><br><span class="line">s.insert(<span class="number">2</span>,<span class="number">11</span>)  <span class="comment"># data = [7, 11, 6, 5, 4]    s = [7, 11, 6, 5]</span></span><br><span class="line"></span><br><span class="line">s.delete(<span class="number">3</span>)  <span class="comment"># data = [7, 11, 5, 5, 4]   s = [7, 11, 5]</span></span><br><span class="line"></span><br><span class="line">s.getIndex(<span class="number">7</span>) <span class="comment"># 1</span></span><br><span class="line">s.getElem(<span class="number">2</span>) <span class="comment"># 11</span></span><br><span class="line">s.getLength() <span class="comment"># 3</span></span><br><span class="line">s[<span class="number">2</span>] = <span class="number">99</span> <span class="comment"># data = [7, 99, 5, 5, 4]  s = [7, 99, 5]</span></span><br><span class="line">s.clear() <span class="comment"># data = [7, 99, 5, 5, 4]   s = None</span></span><br><span class="line">len(s) <span class="comment"># 0</span></span><br></pre></td></tr></table></figure>
+<p>插入和删除的时间的复杂度O(n)。  </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Python/">Python</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/DataStructure/">DataStructure</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://minenet.github.io/2016/08/30/SqList.html" data-title="线性表的顺序存储(Python实现) | Minenet&#39;s Blog" data-tsina="2650384192" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/12/31/2016-summary.html" title="2016年终总结">
+  <strong>上一篇：</strong><br/>
+  <span>
+  2016年终总结</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/08/24/sort-summary.html"  title="排序算法总结">
+ <strong>下一篇：</strong><br/> 
+ <span>排序算法总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线性表的顺序存储"><span class="toc-number">1.</span> <span class="toc-text">线性表的顺序存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-number">1.1.</span> <span class="toc-text">test</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Algorithms/" title="Algorithms">Algorithms<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Database/" title="Database">Database<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Summary/" title="Summary">Summary<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/2015/" title="2015">2015<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mathjs/" title="mathjs">mathjs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/classifier/" title="classifier">classifier<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MongoDB/" title="MongoDB">MongoDB<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DataStructure/" title="DataStructure">DataStructure<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://veryyoung.me" target="_blank" title="veryyoung">veryyoung</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.gonjay.com" target="_blank" title="gonjay">gonjay</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.v2ex.com" target="_blank" title="v2ex">v2ex</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://suanfazu.com" target="_blank" title="suanfazu">suanfazu</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="devtang">devtang</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry , Stay foolish ! <br/>
+			This is my blog , believe it or not !</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2650384192" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/minenet" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/7252941" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		<a href="https://www.facebook.com/minenet" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/minenet" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Minenet">Minenet</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'minenet';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$("table").wrap("<div class='table-area'></div>");/*防止表格溢出*/
+});
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

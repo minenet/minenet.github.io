@@ -1,0 +1,702 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>《集体智慧编程》学习笔记（1） | Minenet&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Minenet">
+    
+
+    
+    <meta name="description" content="最近一直在学习集体智慧编程，第二章开始就学习推荐。用了简单的例子对常见的推荐做了简单的实践应用。上一篇博客中写到了几种常见推荐算法的优劣。现在主要记录几种相似度计算以及部分课后习题的练习。 欧几里德距离计算多维空间的两点的距离，通过距离的远近来表示相似度。$ (p_1,p_2,p_3,\cdots) $和$ (q_1,q_2,q_3,\cdots) $两个点的欧几里得距离为： $$ \sqrt{\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《集体智慧编程》学习笔记（1）">
+<meta property="og:url" content="https://minenet.github.io/2016/06/21/Programming-Collection-Intelligence-1.html">
+<meta property="og:site_name" content="Minenet&#39;s Blog">
+<meta property="og:description" content="最近一直在学习集体智慧编程，第二章开始就学习推荐。用了简单的例子对常见的推荐做了简单的实践应用。上一篇博客中写到了几种常见推荐算法的优劣。现在主要记录几种相似度计算以及部分课后习题的练习。 欧几里德距离计算多维空间的两点的距离，通过距离的远近来表示相似度。$ (p_1,p_2,p_3,\cdots) $和$ (q_1,q_2,q_3,\cdots) $两个点的欧几里得距离为： $$ \sqrt{\">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-19T10:43:50.693Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《集体智慧编程》学习笔记（1）">
+<meta name="twitter:description" content="最近一直在学习集体智慧编程，第二章开始就学习推荐。用了简单的例子对常见的推荐做了简单的实践应用。上一篇博客中写到了几种常见推荐算法的优劣。现在主要记录几种相似度计算以及部分课后习题的练习。 欧几里德距离计算多维空间的两点的距离，通过距离的远近来表示相似度。$ (p_1,p_2,p_3,\cdots) $和$ (q_1,q_2,q_3,\cdots) $两个点的欧几里得距离为： $$ \sqrt{\">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Minenet&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Minenet&#39;s Blog">Minenet&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Record study and growth bit by bit !</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/peruse">读书</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/21/Programming-Collection-Intelligence-1.html" title="《集体智慧编程》学习笔记（1）" itemprop="url">《集体智慧编程》学习笔记（1）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Minenet" target="_blank" itemprop="author">Minenet</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-21T06:36:20.000Z" itemprop="datePublished"> 发表于 2016-06-21 14:36:20</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#欧几里德距离"><span class="toc-number">1.</span> <span class="toc-text">欧几里德距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#皮尔逊相关系数"><span class="toc-number">2.</span> <span class="toc-text">皮尔逊相关系数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习"><span class="toc-number">3.</span> <span class="toc-text">练习</span></a></li></ol>
+		
+		</div>
+		
+		<p>最近一直在学习集体智慧编程，第二章开始就学习推荐。用了简单的例子对常见的推荐做了简单的实践应用。上一篇博客中写到了几种常见推荐算法的优劣。现在主要记录几种相似度计算以及部分课后习题的练习。</p>
+<h3 id="欧几里德距离"><a href="#欧几里德距离" class="headerlink" title="欧几里德距离"></a>欧几里德距离</h3><p>计算多维空间的两点的距离，通过距离的远近来表示相似度。<br>$ (p_1,p_2,p_3,\cdots) $和$ (q_1,q_2,q_3,\cdots) $两个点的欧几里得距离为：</p>
+<p>$$ \sqrt{\sum_{i=1}^{n}(p_i-q_i)^2}= \sqrt{(p_1-q_1)^{2} + (p_2-q_2)^2 + \cdots +(p_n-q_n)^2} \tag{1}$$</p>
+<p>上面式子中就是求两个点的欧几里德距离。Python代码实现：<br><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">euclidean</span><span class="params">(p,q)</span>:</span></span><br><span class="line">    sum = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(P)):</span><br><span class="line">    sum += (p[i] - q[i])**<span class="number">2</span></span><br><span class="line"><span class="keyword">return</span> sum**<span class="number">0.5</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="皮尔逊相关系数"><a href="#皮尔逊相关系数" class="headerlink" title="皮尔逊相关系数"></a>皮尔逊相关系数</h3><p>两个变量之间的相关程度，通过这个相关程度表示相似度。<br>$$ r = \frac{\sum{XY}-\frac{\sum{X}\sum{Y}}{N}} {\sqrt{(\sum{X}^2-\frac{(\sum{X})^2}{N})(\sum{Y}^2-\frac{(\sum{Y})^2}{N})}}  \tag{2}$$</p>
+<p>皮尔逊相关系数python实现：<br><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pearson</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    n = len(x)</span><br><span class="line"></span><br><span class="line">    sum_x = sum(float(i) <span class="keyword">for</span> i <span class="keyword">in</span> x)</span><br><span class="line">    sum_y = sum(float(i) <span class="keyword">for</span> i <span class="keyword">in</span> y)</span><br><span class="line">    </span><br><span class="line">    sum_x2 = sum(i**<span class="number">2.0</span> <span class="keyword">for</span> i <span class="keyword">in</span> x)</span><br><span class="line">    sum_y2 = sum(i**<span class="number">2.0</span> <span class="keyword">for</span> i <span class="keyword">in</span> y)</span><br><span class="line">    </span><br><span class="line">    sum_xy = sum(x[i]*y[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(n))</span><br><span class="line">    </span><br><span class="line">    den = ((sum_x2 - (sum_x**<span class="number">2.0</span>)/n) * (sum_y2 - (sum_y**<span class="number">2.0</span>)/n ))**<span class="number">0.5</span></span><br><span class="line">    <span class="keyword">if</span> den == <span class="number">0</span>:</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">    	<span class="keyword">return</span> (sum_xy-(sum_x * sum_y)/n) / den</span><br></pre></td></tr></table></figure></p>
+<p>注：1表示变量完全相关，0表示无关，-1表示完全负相关。</p>
+<p>如何选择相似度的计算，就需要根据场合选择合适的系数来计算。比如item特别少时，欧几里德距离就出现偏差过大。 </p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>主要解答第五题。<br>首先去官网<a href="http://www.last.fm" target="_blank" rel="noopener">LAST.FM</a>申请API的账户。你将会获得API_KEY等相关秘钥。、<br>与Python想关的API也可以在官网获得。代码托管在github上<a href="https://github.com/pylast/pylast" target="_blank" rel="noopener">pylast</a>。</p>
+<p>可能由于网站的改版等原因，有些函数返回的结果为空，有点蛋疼。所做的推荐也比较简单，大致思路：</p>
+<ol>
+<li>根据你想要推荐的tag，首先找出网站所有的排行榜靠前的标签（tags）。</li>
+<li>根据这些热门标签找出被打出行管tag的音乐专辑。</li>
+<li>对于计算Tanimoto相似度，得出与想要推荐tag相关的tag（根据tag找专辑，找歌曲）。</li>
+</ol>
+<p>贴代码： </p>
+<pre><code class="py"><span class="keyword">import</span> pylast
+<span class="string">'''</span>
+<span class="string">This a test for last.fm API, you can get functions by help(pylast).</span>
+<span class="string">author: minenet</span>
+<span class="string">'''</span>
+<span class="comment"># you must get a account from http://www.last.fm/api, API_KEY and API_SECRET</span>
+API_KEY = <span class="string">'your API_KEY'</span> 
+API_SECRET = <span class="string">'your API_SECRET'</span>
+
+username = <span class="string">'your username'</span>
+password_hash = pylast.md5(<span class="string">'your password'</span>)
+
+network = pylast.LastFMNetwork(
+    api_key = API_KEY, 
+    api_secret = API_SECRET, 
+    username = username,
+    password_hash = password_hash
+)
+
+<span class="function"><span class="keyword">def</span> <span class="title">albumsList</span><span class="params">(tag=<span class="string">''</span>)</span>:</span>
+    albums_list = {}
+    tags = network.get_top_tags()
+    tagList = []
+    <span class="keyword">for</span> tg <span class="keyword">in</span> tags:
+        tg = str(tg)
+        tag_start = tg.index(<span class="string">'Tag'</span>) + <span class="number">6</span>
+        tag_end = tg.index(<span class="string">','</span>) - <span class="number">1</span>
+        tagList.append(tg[tag_start:tag_end])
+    <span class="keyword">if</span> tag <span class="keyword">not</span> <span class="keyword">in</span> tagList:
+        tagList.append(tag)
+    <span class="keyword">for</span> tagItem <span class="keyword">in</span> tagList:    
+        tag = network.get_tag(tagItem)
+        albums_list[tagItem] = {}
+        <span class="keyword">for</span> album <span class="keyword">in</span> tag.get_top_albums():
+            album = str(album)
+            album_start = album.index(<span class="string">'Album'</span>) + <span class="number">8</span>
+            album_end = album.index(<span class="string">','</span>) - <span class="number">1</span>
+            album = album[album_start:album_end]
+            albums_list[tagItem][album] = <span class="number">1.0</span>        
+    <span class="keyword">return</span> albums_list
+
+<span class="function"><span class="keyword">def</span> <span class="title">recommendations</span><span class="params">(tag=<span class="string">''</span>, n=<span class="number">5</span>)</span>:</span>
+    albums_list = albumsList(tag)
+    recommendation = []
+    <span class="keyword">for</span> item <span class="keyword">in</span> albums_list:
+        <span class="keyword">if</span> item != tag:
+            scores = sim_tanimoto(albums_list, tag, item)
+            recommendation.append((scores, item))
+    recommendation.sort()
+    recommendation.reverse()
+    <span class="keyword">return</span> recommendation[<span class="number">0</span>:n]
+
+<span class="function"><span class="keyword">def</span> <span class="title">sim_tanimoto</span><span class="params">(prefs,tag,item)</span>:</span>
+    cossElement = [sim <span class="keyword">for</span> sim <span class="keyword">in</span> prefs[item] <span class="keyword">if</span> sim <span class="keyword">in</span> prefs[tag]]
+    <span class="keyword">return</span> float(len(cossElement)) / (len(prefs[item])+ len(prefs[tag]) - len(cossElement))
+
+<span class="keyword">print</span> recommendations(<span class="string">'rock'</span>)
+<span class="string">'''</span>
+<span class="string">print example:</span>
+<span class="string">[(0.07407407407407407, 'hard rock'),</span>
+<span class="string"> (0.06976744186046512, 'classic rock'), </span>
+<span class="string"> (0.06557377049180328, 'alternative rock'), </span>
+<span class="string"> (0.05660377358490566, 'pop'), </span>
+<span class="string"> (0.05084745762711865, 'british')]</span>
+<span class="string"></span>
+<span class="string">'''</span>
+<span class="keyword">if</span> you want get more help, you can use commmand help(pylast) <span class="keyword">in</span> python command line.
+</code></pre>
+<p>相似度计算也可以选择其他的，代码中使用了Tanimoto。<br>$$ T = \frac{N_c}{N_a + N_b - N_c} \tag{3}$$</p>
+<p>其中对于集合A和B，$ N_a,N_b $分别是A,B元素的个数，$ N_c = A \cap B $ </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://minenet.github.io/2016/06/21/Programming-Collection-Intelligence-1.html" data-title="《集体智慧编程》学习笔记（1） | Minenet&#39;s Blog" data-tsina="2650384192" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/06/30/Hierarchical-clustering.html" title="分层聚类算法">
+  <strong>上一篇：</strong><br/>
+  <span>
+  分层聚类算法</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/06/20/different-recommendations.html"  title="推荐算法的特点">
+ <strong>下一篇：</strong><br/> 
+ <span>推荐算法的特点
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#欧几里德距离"><span class="toc-number">1.</span> <span class="toc-text">欧几里德距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#皮尔逊相关系数"><span class="toc-number">2.</span> <span class="toc-text">皮尔逊相关系数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习"><span class="toc-number">3.</span> <span class="toc-text">练习</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Algorithms/" title="Algorithms">Algorithms<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Database/" title="Database">Database<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Math/" title="Math">Math<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Summary/" title="Summary">Summary<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/2015/" title="2015">2015<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mathjs/" title="mathjs">mathjs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/classifier/" title="classifier">classifier<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/shadowsocks/" title="shadowsocks">shadowsocks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MongoDB/" title="MongoDB">MongoDB<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DataStructure/" title="DataStructure">DataStructure<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://veryyoung.me" target="_blank" title="veryyoung">veryyoung</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.gonjay.com" target="_blank" title="gonjay">gonjay</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.v2ex.com" target="_blank" title="v2ex">v2ex</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://suanfazu.com" target="_blank" title="suanfazu">suanfazu</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="devtang">devtang</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry , Stay foolish ! <br/>
+			This is my blog , believe it or not !</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2650384192" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/minenet" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/7252941" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		<a href="https://www.facebook.com/minenet" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		<a href="https://www.linkedin.com/in/minenet" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Minenet">Minenet</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'minenet';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$("table").wrap("<div class='table-area'></div>");/*防止表格溢出*/
+});
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
